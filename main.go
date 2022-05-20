@@ -20,6 +20,9 @@ func handleUserInput() {
 	if pingRoutine <= 0 {
 		pingRoutine = 400
 	}
+	if pingRoutine > 1000 {
+		pingRoutine =1000
+	}
 	if pingTime <= 0 {
 		pingTime = 10
 	}
