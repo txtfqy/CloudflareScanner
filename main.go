@@ -12,6 +12,7 @@ import (
 func handleUserInput() {
 	var downloadSecond int64
 	flag.IntVar(&pingRoutine, "thread", 400, "请输入扫描协程数(数字越大越快,不能超过1000)")
+	
 	flag.IntVar(&pingTime, "tcppings", 10, "tcping次数")
 	flag.IntVar(&downloadTestCount, "nodes", 10, "要测试的下载节点个数")
 	flag.Int64Var(&downloadSecond, "seconds", 10, "下载测试时间(单位为秒)")
