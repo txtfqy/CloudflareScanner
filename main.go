@@ -6,27 +6,26 @@ import (
 	"sort"
 	"sync"
 	"time"
+	"flag"
 )
 
 func handleUserInput() {
-	fmt.Println("请输入扫描协程数(数字越大越快,默认400):")
-	fmt.Scanln(&pingRoutine)
+	var downloadSecond int64
+	flag.IntVar(&pingRoutine, "thread", 400, "请输入扫描协程数(数字越大越快,不能超过1000)")
+	flag.IntVar(&pingTime, "tcppings", 10, "tcping次数")
+	flag.IntVar(&downloadTestCount, "nodes", 10, "要测试的下载节点个数")
+	flag.Int64Var(&downloadSecond, "seconds", 10, "下载测试时间(单位为秒)")
+	//解析获取参数
+	flag.Parse()
 	if pingRoutine <= 0 {
 		pingRoutine = 400
 	}
-	fmt.Println("请输入tcping次数(默认10):")
-	fmt.Scanln(&pingTime)
 	if pingTime <= 0 {
 		pingTime = 10
 	}
-	fmt.Println("请输入要测试的下载节点个数(默认10):")
-	fmt.Scanln(&downloadTestCount)
 	if downloadTestCount <= 0 {
 		downloadTestCount = 10
 	}
-	fmt.Println("请输入下载测试时间(默认10,单位为秒):")
-	var downloadSecond int64
-	fmt.Scanln(&downloadSecond)
 	if downloadSecond <= 0 {
 		downloadSecond = 10
 	}
